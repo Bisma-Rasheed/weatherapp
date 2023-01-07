@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setTemp } from "./store/reducers/TempSlice";
 
-function App() {
+const App = () => {
+  const [country, setCountry] = useState();
+  const dispatch = useDispatch();
+
+  const findTemp = (e) => {
+    e.preventDefault();
+    dispatch(setTemp(country));
+    setCountry('');
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <div className="main_div">
+        <div className="center_div">
+        <br/>
+          <h1 className="heading">Weather app</h1>
+          <br/>
+          <input className="countryInput" type="text"
+           placeholder="Enter country name"
+            value={country}
+            onChange={(e)=>setCountry(e.target.value)}
+           />
+           <button onClick={findTemp}>Find</button>
+           <br/>
+           <h3>You entered {country}</h3>
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default App;
