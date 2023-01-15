@@ -25,7 +25,7 @@ const App = () => {
            />
            <button onClick={findTemp}>Find</button>
            <br/>
-           <h3>You entered {country}</h3>
+           <h3>You entered: {country}</h3>
         </div>
       </div>
     </>
